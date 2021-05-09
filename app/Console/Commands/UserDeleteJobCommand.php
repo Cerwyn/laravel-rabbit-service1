@@ -2,18 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
-use App\Jobs\UserCreated;
+use App\Jobs\UserDeleted;
 use Illuminate\Console\Command;
 
-class UserJobCommand extends Command
+class UserDeleteJobCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'user:job';
+    protected $signature = 'user-delete:job';
 
     /**
      * Create a new command instance.
@@ -32,6 +31,6 @@ class UserJobCommand extends Command
      */
     public function handle()
     {
-        UserCreated::dispatch(User::inRandomOrder()->first()->toArray());
+        UserDeleted::dispatch(['user_id' => 1]);
     }
 }
